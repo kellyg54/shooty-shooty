@@ -2,12 +2,14 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     otherSprite.destroy(effects.hearts, 100)
     info.changeLifeBy(1)
     info.changeScoreBy(1)
+    music.powerUp.play()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     sprite.destroy(effects.fire, 100)
     info.changeLifeBy(1)
     info.changeScoreBy(1)
+    music.pewPew.playUntilDone()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
@@ -31,6 +33,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fountain, 500)
+    music.jumpDown.play()
     info.changeLifeBy(-1)
 })
 let bogey: Sprite = null
